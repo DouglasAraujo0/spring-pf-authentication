@@ -25,6 +25,11 @@ public class Permissao {
     )
     @Column(name = "ID_PERMISSAO")
     private Long id;
+
     @Column(name = "NM_PERMISSAO")
     private String nome;
+
+    @ManyToOne
+    @JoinColumn(name = "sistema_id")
+    private Sistema sistema;
 }
