@@ -1,12 +1,14 @@
 package br.com.fiap.springpfauthentication.resource;
 
 import br.com.fiap.springpfauthentication.entity.Sistema;
+import br.com.fiap.springpfauthentication.entity.Usuario;
 import br.com.fiap.springpfauthentication.repository.SistemaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Set;
 
 
 @RestController
@@ -33,15 +35,15 @@ public class SistemaResource {
     }
 
     @GetMapping(value = "/{id}/responsaveis")
-    public Set<Re> GetResponsaveisByPerfilId(@PathVariable Long id) {
+    public Set<Usuario> GetResponsaveisByPerfilId(@PathVariable Long id) {
         Sistema sistema = repo.findById(id).orElseThrow();
         return sistema.getResponsaveis();
     }
 
     @PostMapping(value = "/{id}/permissoes")
-    public ResponseEntity<String> addPermissaoToPerfil(@PathVariable Long id, @RequestBody ) {
+    public ResponseEntity<String> addPermissaoToPerfil(@PathVariable Long id, @RequestBody Usuario usuario) {
         Sistema sistema = repo.findById(id).orElseThrow();
-        sistema.getResponsaveis().add(sistema);
+        sistema.getResponsaveis().add(usuario);
         repo.save(sistema); // Salvar o perfil atualizado com a nova permissão
         return ResponseEntity.ok("Permissão adicionada com sucesso ao perfil de ID " + id);
     }
