@@ -6,6 +6,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
+
 @Entity
 @Table(name = "TB_2TDSPF_PERFIL")
 @Data
@@ -29,4 +34,29 @@ public class Perfil {
 
     @Column(name = "NM_PERFIL")
     private String nome;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinTable(
+            name = "TB_2TDSPF_PERMISSOES",
+            joinColumns = {
+                    @JoinColumn(
+                            name = "PERFIL",
+                            referencedColumnName = "ID_PERFIL",
+                            foreignKey = @ForeignKey(
+                                    name = "FK_PERMISSOES_PERFIL"
+                            )
+                    )
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(
+                            name = "PERMISSAO",
+                            referencedColumnName = "ID_PERMISSAO",
+                            foreignKey = @ForeignKey(
+                                    name = "FK_PERFIL_PERMISSOES"
+                            )
+                    )
+            }
+    )
+
+    private Set<Permissao> permissoes = new LinkedHashSet<>();
 }
