@@ -1,10 +1,8 @@
 package br.com.fiap.springpfauthentication.resource;
 
-import br.com.fiap.springpfauthentication.entity.Perfil;
 import br.com.fiap.springpfauthentication.entity.Permissao;
 import br.com.fiap.springpfauthentication.repository.PermissaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,14 +20,14 @@ public class PermissaoResource {
         return repo.findAll();
     }
 
+    @GetMapping(value = "/{id}")
+    public Permissao findById(@PathVariable Long id) {
+        return repo.findById(id).orElseThrow();
+    }
+
     @Transactional
     @PostMapping
     public Permissao save(@RequestBody Permissao permissao) {
         return repo.save( permissao );
-    }
-
-    @GetMapping(value = "/{id}")
-    public Permissao findById(@PathVariable Long id) {
-        return repo.findById(id).orElseThrow();
     }
 }

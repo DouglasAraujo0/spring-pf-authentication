@@ -5,10 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.HashSet;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -37,7 +34,7 @@ public class Perfil {
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinTable(
-            name = "TB_2TDSPF_PERMISSOES",
+            name = "TB_2TDSPF_CARDAPIO",
             joinColumns = {
                     @JoinColumn(
                             name = "PERFIL",

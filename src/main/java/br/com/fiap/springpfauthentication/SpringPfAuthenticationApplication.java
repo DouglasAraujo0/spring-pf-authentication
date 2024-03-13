@@ -16,7 +16,7 @@ public class SpringPfAuthenticationApplication {
 
     @GetMapping(value = "/")
     public String index() {
-        return "Seja bem-vindo";
+        return "Seja bem-vindo à Autentica Benezinho";
     }
 
 }

@@ -37,27 +37,26 @@ public class Sistema {
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinTable(
-            name = "TB_2TDSPF_PERMISSOES",
+            name = "TB_2TDSPF_RESPONSAVEIS",
             joinColumns = {
                     @JoinColumn(
-                            name = "SISTEMA",
+                            name = "TB_2TDSPF_SISTEMA",
                             referencedColumnName = "ID_SISTEMA",
                             foreignKey = @ForeignKey(
-                                    name = "FK_RESPONSAVEIS_SISTEMA"
+                                    name = "FK_ID_SISTEMA"
                             )
                     )
             },
             inverseJoinColumns = {
                     @JoinColumn(
-                            name = "USUARIO",
+                            name = "TB_2TDSPF_USUARIO",
                             referencedColumnName = "ID_USUARIO",
                             foreignKey = @ForeignKey(
-                                    name = "FK_SISTEMA_RESPONSAVEIS"
+                                    name = "FK_ID_USUARIO"
                             )
                     )
             }
     )
-
     private Set<Usuario> responsaveis = new LinkedHashSet<>();
 
 
