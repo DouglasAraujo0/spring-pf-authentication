@@ -1,16 +1,19 @@
 package br.com.fiap.springpfauthentication.resource;
 
+import br.com.fiap.springpfauthentication.entity.Perfil;
 import br.com.fiap.springpfauthentication.entity.Permissao;
-import jakarta.transaction.Transactional;
+import br.com.fiap.springpfauthentication.repository.PermissaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/permissao")
-
+@RequestMapping("/permissao")
 public class PermissaoResource {
+
     @Autowired
     private PermissaoRepository repo;
 
@@ -19,21 +22,14 @@ public class PermissaoResource {
         return repo.findAll();
     }
 
-    @GetMapping(value = "/{id}")
-    public Permissao findById(@PathVariable Long id) {
-        return repo.findById( id ).orElseThrow();
-    }
-
     @Transactional
     @PostMapping
     public Permissao save(@RequestBody Permissao permissao) {
         return repo.save( permissao );
     }
 
-    @Transactional
-    @DeleteMapping(value = "/{id}")
-    public void delete(@PathVariable Long id) {
-        Permissao permissao = repo.findById( id ).get();
-        repo.delete( permissao );
+    @GetMapping(value = "/{id}")
+    public Permissao findById(@PathVariable Long id) {
+        return repo.findById(id).orElseThrow();
     }
 }

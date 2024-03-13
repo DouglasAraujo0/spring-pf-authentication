@@ -1,18 +1,16 @@
 package br.com.fiap.springpfauthentication.resource;
 
-
-import br.com.fiap.springpfauthentication.entity.Permissao;
 import br.com.fiap.springpfauthentication.entity.Sistema;
 import br.com.fiap.springpfauthentication.repository.SistemaRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
-@RestController
-@RequestMapping(value = "/sistema")
 
+@RestController
+@RequestMapping("/sistema")
 public class SistemaResource {
 
     @Autowired
@@ -23,21 +21,28 @@ public class SistemaResource {
         return repo.findAll();
     }
 
-    @GetMapping(value = "/{id}")
-    public Sistema findById(@PathVariable Long id) {
-        return repo.findById( id ).orElseThrow();
-    }
-
     @Transactional
     @PostMapping
     public Sistema save(@RequestBody Sistema sistema) {
         return repo.save( sistema );
     }
 
-    @Transactional
-    @DeleteMapping(value = "/{id}")
-    public void delete(@PathVariable Long id) {
-        Sistema sistema = repo.findById( id ).get();
-        repo.delete( sistema );
+    @GetMapping(value = "/{id}")
+    public Sistema findById(@PathVariable Long id) {
+        return repo.findById(id).orElseThrow();
+    }
+
+    @GetMapping(value = "/{id}/responsaveis")
+    public Set<Re> GetResponsaveisByPerfilId(@PathVariable Long id) {
+        Sistema sistema = repo.findById(id).orElseThrow();
+        return sistema.getResponsaveis();
+    }
+
+    @PostMapping(value = "/{id}/permissoes")
+    public ResponseEntity<String> addPermissaoToPerfil(@PathVariable Long id, @RequestBody ) {
+        Sistema sistema = repo.findById(id).orElseThrow();
+        sistema.getResponsaveis().add(sistema);
+        repo.save(sistema); // Salvar o perfil atualizado com a nova permissão
+        return ResponseEntity.ok("Permissão adicionada com sucesso ao perfil de ID " + id);
     }
 }
