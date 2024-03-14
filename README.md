@@ -1,10 +1,10 @@
 # 🔑🤓👍🏾 Autentica Benezinho
 
-|![fiap.jpg](documentacao%2Ffiap.jpg)                | **JAVA ADVANCED** |
-|------------------------------------------|-------------------|
-| **ALUNO:**                               | **TURMA:** 2TDSPF |
-| **PROFESSOR:** Benefrancis do Nascimento | 11/03/2024        |
-| **SIMULADO PARA O CP I**                 |                   |
+| ![fiap.jpg](documentacao%2Ffiap.jpg)        | **JAVA ADVANCED** |
+|---------------------------------------------|-------------------|
+| **ALUNO:** Douglas Araujo, Gustavo Bertacci | **TURMA:** 2TDSPF |
+| **PROFESSOR:** Benefrancis do Nascimento    | 11/03/2024        |
+| **SIMULADO PARA O CP I**                    |                   |
 
 # Sumário
 

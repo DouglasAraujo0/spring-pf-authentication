@@ -25,6 +25,7 @@ public class SistemaResource {
     public List<Sistema> findAll() {
         return sistemRepo.findAll();
     }
+
     @GetMapping(value = "/{id}")
     public Sistema findById(@PathVariable Long id) {
         return sistemRepo.findById(id).orElseThrow();

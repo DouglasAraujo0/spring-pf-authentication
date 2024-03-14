@@ -25,6 +25,7 @@ public class PerfilResource {
     public List<Perfil> findAll() {
         return perfilRepo.findAll();
     }
+
     @GetMapping(value = "/{id}")
     public Perfil findById(@PathVariable Long id) {
         return perfilRepo.findById(id).orElseThrow();
